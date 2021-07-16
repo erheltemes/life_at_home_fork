@@ -20,9 +20,23 @@ export const SiteProvider = ({ children }) => {
     function loadSiteData() {
         API.getSite()
             .then(res => {
-                setSiteData(res.data[0])
+                if (res.data[0] === undefined) {
+                    API.postSite({
+                        siteData: {},
+                        homePage: {},
+                        servicesPage: {},
+                        login: {
+                            username: "Admin",
+                            password: "$2b$12$x2GMLXmpoUhDcpXRJVhADOcXpail/VGgu4l4PA4z9/lo/mPuFDcwK"
+                        }
+                    })
+                        .catch(err => console.log(err))
+                } else {
+                    setSiteData(res.data[0])
+                }
+
             })
-            .catch(err => console.log(err));
+            .catch(err => { console.log(err) });
     };
 
     //FORM FUNCTIONS
@@ -98,9 +112,9 @@ export const SiteProvider = ({ children }) => {
     }
 
 
-  if (siteData === "loading")
-    return (<h1>LOADING</h1>);
-  
+    if (siteData === "loading")
+        return (<h1>LOADING</h1>);
+
 
     return (
         <SiteContext.Provider value={{ siteData, siteUpdateQueue, siteDataForm, handleInputChange, updateSiteData, formInputChange, updateLoginSiteData }}>

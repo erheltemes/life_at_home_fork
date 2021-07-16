@@ -6,6 +6,9 @@ export default {
   getSite: function () {
     return axios.get("/api/site");
   },
+  postSite: function (newSite) {
+    return axios.post("/api/site", newSite);
+  },
   updateSite: function (id, newData) {
     return axios.put("/api/site/"+ id, newData);
   },

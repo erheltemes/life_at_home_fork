@@ -20,7 +20,8 @@ const Contact = (props) => {
         <Grid item xs={12} sm={5} md={6}>
           <div className="calendly contact-container" >
             <h3 className="message-header">Schedule a Consultation:</h3>
-            <InlineWidget styles={{ height: '90%', width: '90%' }} url="https://calendly.com/lifeathome" />
+            {/* ADD CALENDLY LINK TO URL */}
+            <InlineWidget styles={{ height: '90%', width: '90%' }} url="" />
           </div>
         </Grid>
       </Grid>
